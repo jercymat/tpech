@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+  <title>掛號完成｜台北市立聯合醫院</title>
+  <%- include('../utils/_head') %>
+  <link rel='stylesheet' href='/stylesheets/reg/reg_finish.css' />
+  <script src="/javascripts/reg/reg_finish.js"></script>
+</head>
+<body>
+  <%- include('../components/header') %>
+  <%- include('../components/top-deco') %>
+  <div class="container-fluid my-5">
+    <div class="container text-center text-md-left">
+      <div>
+        <h2 class="d-inline-block">預約掛號成功</h2>
+        <div class="ml-2 fg-accept d-inline-block" style="font-size: 2rem;"><i class="fi-cwsuxl-check"></i></div>
+      </div>
+      <p class="mt-2 mb-5">您好，以下為您的掛號資料</p>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <h1>看診序號：<%= reg_no %> 號</h1>
+          <h1 class="fg-warn mt-2">請於<br class="d-md-none"><%= check_in %>前<br class="d-md-none">完成報到</h1>
+        </div>
+        <div class="col-12 col-md-6 mt-3 mt-md-0">
+          <p>看診日期：<br class="d-md-none"><%= reg_date[0] %> / <%= reg_date[1] %> / <%= reg_date[2] %> <%= noon_code %></p>
+          <p class="mt-2">掛號資料：<br class="d-md-none"><%= hosp_name %> / <%= dept_name %> / <%= dr_name %>醫生</p>
+          <p class="mt-2">身分證字號：<br class="d-md-none"><%= patient_id %></p>
+          <p class="mt-2">病患類別：<br class="d-md-none"><a href="">初診 (點擊填寫初診表單)</a></p>
+        </div>
+      </div>
+      <hr class="my-5">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <h2 class="mb-3">將掛號資料<br class="d-md-none">儲存至手機</h2>
+          <p>您可以透過掃描QR code<br>或是<a href="">點選這裡</a>將看診資料以圖片儲存至行動裝置</p>
+        </div>
+        <div class="col-12 col-md-6 mt-5 mt-md-0">
+          <img class="h-100" src="/images/reg/qr_reg_finish.svg" alt="Register Finish qrCode" style="max-width: 150px;">
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-5 col-lg-3 mt-5">
+          <button id="reg_result__back" type="button" class="tpech__btn_popping w-100 mx-auto">我知道了，回到掛號首頁</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('../components/bottom-deco') %>
+  <%- include('../components/footer') %>
+  <%- include('../utils/_foot') %>
+</body>
+</html>

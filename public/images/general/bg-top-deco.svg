@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="87.751" viewBox="0 0 1920 87.751">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3171cc;
+      }
+
+      .cls-2 {
+        fill: rgba(49,113,204,0.7);
+      }
+    </style>
+  </defs>
+  <g id="Group_674" data-name="Group 674" transform="translate(-0.5 -150.747)">
+    <g id="Group_671" data-name="Group 671" transform="translate(0.5 150.747)">
+      <path id="Intersection_56" data-name="Intersection 56" class="cls-1" d="M0,87.722V50.99C149.059,62.364,380.643,66.9,570.033,48.13c291.194-28.855,342.791-20.878,810.458-3.184C1588.23,52.8,1688.442,38,1765.658,23.187,1818.806,12.994,1861.076,2.8,1920,0V87.722Z" transform="translate(1920 87.722) rotate(180)"/>
+    </g>
+    <path id="Intersection_65" data-name="Intersection 65" class="cls-2" d="M0,0H1045.141c-369.4,60.69-414.007,74.617-675.569,63.664C246.576,58.514,111.8,70.2,0,87.346ZM1483.761,0h134.552a410.34,410.34,0,0,1-66.01,5.486C1528.186,5.487,1506.032,3.236,1483.761,0Z" transform="translate(0.5 151.151)"/>
+  </g>
+</svg>

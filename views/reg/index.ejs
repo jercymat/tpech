@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+  <title>看診日程表｜台北市立聯合醫院</title>
+  <%- include('../utils/_head') %>
+  <link rel='stylesheet' href='/stylesheets/reg/index.css' />
+  <script src="/javascripts/reg/index.js"></script>
+  <script defer src="https://friconix.com/cdn/friconix.js"></script>
+</head>
+<body>
+  <%- include('../components/header') %>
+  <%- include('../components/top-deco') %>
+  <div id="time-table-area" class="container-fluid my-5">
+    <div class="container">
+      <div class="text-center text-md-left">
+        <h2>選擇看診醫師及時間</h2>
+        <h4 class="mt-2 mb-5 fg-secondary"><%= hptl_name %> / <%= dept_name %> </h4>
+      </div>
+      <div class="text-center text-xl-left" style="overflow-x: auto;">
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 4%;"></th>
+              <% query_dates.forEach(e => { %>
+              <th scope="col" style="width: 16%; min-width: 150px;" class="text-center p-0">
+                <div class="time_table__header bg-secondary text-light m-1"><%= e %> </div>
+              </th>
+              <% }) %>
+            </tr>
+          </thead>
+          <tbody>
+            <% ['上午', '下午', '晚間'].forEach((period, idx) => { %>
+            <tr>
+              <th scope="row" class="p-0">
+                <div class="time_table__row m-1 p-2 d-flex align-items-center"><%= period %></div>
+              </th>
+              <% for (dd = 24; dd <= 29; dd++) { %>
+              <td class="p-0">
+                <div class="time_table__body m-1 p-2">
+                  <% query_clinics[`08${dd}`][`${idx+1}`].forEach((clinic, idx) => { %>
+                  <div class="time_table__cell<% if (idx != 0) { %> mt-2<% } %>">
+                    <a class="time_table__dr_link" target="_blank"
+                      href="https://websrv01.tpech.gov.tw/drview/Home/Read?emp_no=<%= clinic.DR_CODE %>">
+                      <h5 class="d-inline"><%= clinic.DR_NAME %></h5>
+                    </a> <br class="d-xl-none">(簡介)
+                    <button type="button" class="tpech__btn_basic w-100 mt-3" <% if (clinic.FULL == 'Y') { %> disabled<% } %>
+                      onclick="sendRegData('<%= clinic.CLINIC_ID %>')">
+                      <% if (clinic.FULL == 'N') { %>
+                      掛號(35/40)
+                      <% } else if (clinic.FULL == 'Y') { %>
+                      已額滿
+                      <% } %>
+                    </button>
+                    <% if (clinic.NOTICE != null) { %>
+                    <div class="collapse" id="time_table__remark--<%= clinic.SNO %>">
+                      <div class="pt-3 pb-2">
+                        <p class="fg-warn"><%= clinic.NOTICE %></p>
+                      </div>
+                    </div>
+                    <% } %>
+                    <p class="text-center">
+                      <a href="#time_table__remark--<%= clinic.SNO %>" data-toggle="collapse"
+                        class="time_table__remark_switch<% if (clinic.NOTICE == null) { %>--disabled<% } %>">
+                        <% if (clinic.NOTICE != null) { %>
+                        <i class="fi-xnsdxl-chevron-solid"></i>
+                        <% } else { %>
+                        <i class="fi-xwluxl-minus-wide"></i>
+                        <% } %>
+                      </a>
+                    </p>
+                  </div>
+                  <% }) %>
+                </div>
+              </td>
+              <% } %>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 d-flex align-items-center justify-content-center">
+          <span class="text-center d-block tpech__text-secondary">你已經滑到最下面囉</span>
+        </div>
+        <div class="col-4 d-flex justify-content-end">
+          <a href="#" class="btn btn-primary tpech__btn_top" role="button">TOP</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('../components/bottom-deco') %>
+  <%- include('../components/footer') %>
+  <%- include('../utils/_foot') %>
+</body>
+</html>

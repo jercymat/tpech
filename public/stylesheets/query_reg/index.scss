@@ -1,0 +1,11 @@
+@import "../utils/_global";
+@import "../components/_buttons";
+@import "../components/inputs";
+@import "../components/top_deco";
+@import "../components/bottom_deco";
+
+@media (min-width: 576px) {
+  .invalid-feedback {
+    margin-left: calc(200px + 2rem);
+  }
+}

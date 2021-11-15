@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>網路掛號系統｜台北市立聯合醫院</title>
+    <%- include('utils/_head') %>
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v3.js"></script>
+
+    <!-- Custom JS -->
+    <script src="/javascripts/index.js"></script>
+  </head>
+  <body>
+    <%- include('components/header') %>
+    <div id="banner" class="container-fluid fg-light text-center text-md-left">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-5 pr-md-5">
+            <h2>歡迎使用<br class="d-md-none">網路掛號系統</h2>
+            <p class="mt-4">
+              請選擇您的掛號方式，並從時刻表選擇欲預約看診之日期與時間。若您欲取得各院區門診服務時間，請參考語音掛號及門診時刻表。<br><br class="d-md-none">
+              當您無法使用網路掛號功能時，請利用24小時客服中心 : (02)2555-3000，若有不便，敬請見諒。
+            </p>
+          </div>
+          <div class="col-12 col-md-7 row mx-0 mt-5 mt-md-0 pl-md-5 pr-md-0">
+            <div class="col-12 col-md-6 px-0 px-md-3">
+              <a href="#hospital-area" class="btn btn-outline-primary tpech__btn_title w-100 py-6" role="button">依院區掛號</a>
+            </div>
+            <div class="col-12 col-md-6 mt-3 mt-md-0 px-0 px-md-3">
+              <a href="#dept-area" class="btn btn-outline-primary tpech__btn_title w-100 py-6" role="button">依科別掛號</a>
+              <p class="text-md-right pr-2 mt-3">想掛號特定醫生 ? <a href="/find_doctor" class="tpech__text-a-title">請點這裡</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="hospital-area" class="container-fluid">
+      <div class="text-center py-5">
+        <h2 id="hptl__section_title">依院區掛號</h2>
+        <p id="hptl__section_subti">在下方選擇欲看診之院區或門診部</p>
+        <div class="hptl__steps_wrapper">
+          <div id="hptl__step_1" class="hptl__step">
+            <div class="container">
+              <div class="row my-4 d-flex justify-content-center">
+                <div class="col-12 col-md-4 col-lg-3">
+                  <button id="hptl__btn_switch_map" class="tpech__btn_popping w-100">切換地圖顯示</button>
+                </div>
+              </div>
+              <div id="hptl__select_mode_containter">
+                <div id="hptl__list_select_area">
+                  <!-- Rounded tabs -->
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                      <ul role="tablist"
+                        class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-outline-secondary border-0 rounded-nav mt-3">
+                        <li class="nav-item flex-sm-fill">
+                          <a id="home-tab" data-toggle="tab" href="#hptl__branch_tab" role="tab" aria-controls="hospital-branch"
+                            aria-selected="true" class="nav-link border-0 active">院區</a>
+                        </li>
+                        <li class="nav-item flex-sm-fill">
+                          <a id="profile-tab" data-toggle="tab" href="#hptl__clinic_tab" role="tab" aria-controls="hospital-clinic"
+                            aria-selected="false" class="nav-link border-0">門診部（展示用，未提供測試）</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="tab-content">
+                    <div id="hptl__branch_tab" role="tabpanel" aria-labelledby="branch-tab"
+                      class="tab-pane fade px-0 px-md-4 py-5 show active">
+                      <% for( let i = 0; i < branches.length; i++ ) { %>
+                      <div class="hptl_branch__img">
+                        <img class="w-100" src="/images/index/branch-<%= branches[i] %>.jpg" alt="<%= branches[i] %>院區">
+                        <div class="hptl_branch__overlay_text d-flex flex-column align-items-center justify-content-center">
+                          <h4 class="fg-light<% if (i != 0) { %>-darken<% } %> mb-0"><%= branches[i] %>院區</h4>
+                          <% if (i != 0) { %><p class="fg-light-darken">未提供測試</p><% } %>
+                        </div>
+                      </div>
+                      <% } %>
+                    </div>
+                    <div id="hptl__clinic_tab" role="tabpanel" aria-labelledby="clinic-tab" class="tab-pane fade px-4 py-5">
+                      <div class="row">
+                        <% for( let i = 0; i < clinics.length; i++ ) { %>
+                        <div class="col-12 col-md-4 col-lg-3 mb-3">
+                          <button class="tpech__btn_popping w-100"><%= clinics[i] %></button>
+                        </div>
+                        <% } %>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End rounded tabs -->
+                </div>
+                <div id="hptl__map_select_area" style="opacity: 0;" class="d-none">
+                  <div class="row">
+                    <div id="hptl__map_wrapper" class="col-6 d-flex justify-content-center">
+                      <!-- Map will be here -->
+                    </div>
+                    <div class="col-6 d-flex align-items-center">
+                      <p class="text-left">
+                        ．從左方地圖選擇欲看診行政區<br>
+                        ．地圖上「H」圖標表示該行政區分佈之院區<br>
+                        ．淺色區域表示該地區目前無院區分布<br>
+                        ．若您不清楚自己所在區域，可以使用
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="hptl__step_2" class="hptl__step d-none">
+            <div class="container">
+              <!-- Rounded tabs -->
+              <ul role="tablist" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-outline-secondary border-0 rounded-nav mt-4">
+              </ul>
+              <div class="tab-content"></div>
+              <div class="row justify-content-center">
+                <div class="col-12 col-md-4 col-lg-3 mt-3">
+                  <button id="hptl__step_back_btn" class="tpech__btn_popping w-100">返回上一步</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="container">
+        <div id="hr-deco" class="d-inline-block"></div>
+      </div>
+    </div>
+    <div id="dept-area" class="container-fluid">
+      <div class="text-center py-5">
+        <h2 id="dept__section_title">依科別掛號</h2>
+        <p id="dept__section_subti">在下方選擇欲看診之科別</p>
+        <div class="dept__steps_wrapper">
+          <div id="dept__step_1" class="dept__step">
+            <div class="container">
+              <!-- Rounded tabs -->
+              <ul role="tablist"
+                class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-outline-secondary border-0 rounded-nav mt-4">
+                <% depts.forEach((dgroup, idx) => { %>
+                <li class="nav-item flex-sm-fill">
+                  <a id="dept-<%= dgroup.DGROUP_CODE %>-tab" data-toggle="tab" href="#dept__<%= dgroup.DGROUP_CODE %>_tab" role="tab"
+                    aria-controls="department-<%= dgroup.DGROUP_CODE %>" aria-selected="<% if (idx == 0) { %>true<% } else { %>false<% } %>"
+                    class="nav-link border-0 <% if (idx == 0) { %>active<% } %>"><%= dgroup.DGROUP_NAME %></a>
+                </li>
+                <% }) %>
+              </ul>
+              <div class="tab-content">
+                <% depts.forEach((dgroup, idx) => { %>
+                <div id="dept__<%= dgroup.DGROUP_CODE %>_tab" role="tabpanel" aria-labelledby="dept-<%= dgroup.DGROUP_CODE %>-tab"
+                  class="tab-pane fade px-4 py-5<% if (idx == 0) { %> show active<% } %>">
+                  <div class="row">
+                    <% dgroup.DEPTS.forEach(dept => { %>
+                    <div class="col-12 col-md-4 col-lg-3 mb-3">
+                      <button id="dept__<%= dept.HDEPT_CODE %>_btn" class="tpech__btn_popping dept__dept_btn w-100"><%= dept.HDEPT_NAME %></button>
+                    </div>
+                    <% }) %>
+                  </div>
+                </div>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+          <div id="dept__step_2" class="dept__step d-none">
+            <p id="dept__selected_dept" class="d-none">AH00</p>
+            <div class="container px-0 px-md-4 py-5">
+              <% for( let i = 0; i < branches.length; i++ ) { %>
+              <div class="dept_branch__img">
+                <img class="w-100" src="/images/index/branch-<%= branches[i] %>.jpg" alt="<%= branches[i] %>院區">
+                <div class="dept_branch__overlay_text d-flex flex-column align-items-center justify-content-center">
+                  <h4 class="fg-light<% if (i != 0) { %>-darken<% } %> mb-0"><% if (i == 0) { %><%= branches[i] %>院區<% } else { %>沒有該科別<% } %></h4>
+                </div>
+              </div>
+              <% } %>
+              <div class="row justify-content-center">
+                <div class="col-12 col-md-4 col-lg-3 mt-5">
+                  <button id="dept__step_back_btn" class="tpech__btn_popping w-100">返回上一步</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-4"></div>
+          <div class="col-4 d-flex align-items-center justify-content-center">
+            <span class="text-center d-block tpech__text-secondary">你已經滑到最下面囉</span>
+          </div>
+          <div class="col-4 d-flex justify-content-end">
+            <a href="#" class="btn btn-primary tpech__btn_top" role="button">TOP</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('components/bottom-deco') %>
+    <%- include('components/footer') %>
+    <%- include('utils/_foot') %>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<nav id="tpech__navbar_head" class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a href="/" class="navbar-brand mb-0 h1 d-md-none">台北市立聯合醫院掛號系統</a>
+  <a class="navbar-brand py-2 ml-3 d-none d-md-inline" href="/">
+    <img src="/images/general/ic-navbar.png" height="65" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+<nav id="tpech__navbar_list" class="navbar navbar-expand-lg navbar-dark bg-secondary py-0 py-lg-2">
+  <div class="collapse navbar-collapse py-2 py-lg-0" id="navbarNav">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item px-0 px-lg-3 px-xl-4<% if (header_mode == 1) { %> active<% } %>">
+        <a class="nav-link py-1" href="./find_doctor">醫師門診查詢<% if (header_mode == 1) { %> <span
+            class="sr-only">(current)</span><% } %></a>
+      </li>
+      <li class="nav-item px-0 px-lg-3 px-xl-4<% if (header_mode == 2) { %> active<% } %>">
+        <a class="nav-link py-1" href="./symptom">透過症狀查詢<% if (header_mode == 2) { %> <span
+            class="sr-only">(current)</span><% } %></a>
+      </li>
+      <li class="nav-item px-0 px-lg-3 px-xl-4<% if (header_mode == 3) { %> active<% } %>">
+        <a class="nav-link py-1" href="./clinic_progress">看診進度<% if (header_mode == 2) { %> <span
+            class="sr-only">(current)</span><% } %></a>
+      </li>
+      <li class="nav-item px-0 px-lg-3 px-xl-4<% if (header_mode == 4) { %> active<% } %>">
+        <a class="nav-link py-1" href="./query_reg">查詢/取消掛號<% if (header_mode == 3) { %> <span
+            class="sr-only">(current)</span><% } %></a>
+      </li>
+      <li class="nav-item px-0 px-lg-3 px-xl-4<% if (header_mode == 5) { %> active<% } %>">
+        <a class="nav-link py-1" href="https://tpech.gov.taipei/News_Content.aspx?n=16CD7930BD3BAA2D&sms=960CE2BE864E1189&s=A081EC706B56A289" target="_blank">掛號須知<% if (header_mode == 4) { %> <span class="sr-only">(current)</span><% } %></a>
+      </li>
+      <li class="nav-item px-0 px-lg-3 px-xl-4<% if (header_mode == 6) { %> active<% } %>">
+        <a class="nav-link py-1" href="https://tpech.gov.taipei/cp.aspx?n=BD023DB9FE501AD3" target="_blank">電子門診表<% if (header_mode == 5) { %> <span
+            class="sr-only">(current)</span><% } %></a>
+      </li>
+      <li class="nav-item px-0 px-lg-3 px-xl-4">
+        <a class="nav-link py-1 disabled" href="#" aria-disabled="true" tabindex="-1">English</a>
+      </li>
+    </ul>
+  </div>
+</nav>

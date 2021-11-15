@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "jf-huninn";
+  src: url(/fonts/jf-openhuninn-1.1.woff);
+}
+
+body {
+  font-family: jf-huninn;
+}
+
+.tpech__text-a-title {
+  color: white;
+  text-decoration: underline;
+  transition: color .15s ease-in-out;
+
+  &:hover {
+    color: $color-secondary;
+  }
+}
+
+.tpech__text-secondary {
+  color: $color-secondary;
+}

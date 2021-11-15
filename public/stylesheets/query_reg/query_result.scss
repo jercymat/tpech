@@ -1,0 +1,43 @@
+@import "../utils/_global";
+@import "../components/_buttons";
+@import "../components/top_deco";
+@import "../components/bottom_deco";
+
+.reg_record__card {
+  .rr_card__header {
+    @extend .fg-light;
+    @extend .bg-secondary;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    text-align: center;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .rr_card__body {
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    border: 1px solid $color-secondary;
+    border-radius: 0 0 1rem 1rem;
+  }
+}
+
+.modal-body {
+  button {
+    width: 100% !important;
+  }
+}
+
+#query_result__leave {
+  width: 100% !important;
+}
+
+@media (min-width: 768px) {
+  #query_result__leave {
+    width: 50% !important;
+  }
+
+  .modal-body {
+    button {
+      width: 75% !important;
+    }
+  }
+}

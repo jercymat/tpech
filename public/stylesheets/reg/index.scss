@@ -1,0 +1,62 @@
+@import "../utils/_global";
+@import "../components/_buttons";
+@import "../components/top_deco";
+@import "../components/bottom_deco";
+
+#time-table-area {
+
+  table {
+    height: 100%;
+  }
+
+  .time_table__header {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+  }
+
+  .time_table__row {
+    color: $color-secondary;
+    background-color: white;
+    min-height: 300px;
+    height: calc(100% + 8px);
+    font-size: 1.25rem;
+  }
+
+  tr:nth-of-type(odd) .time_table__body {
+    background-color: #DFDFDF;
+  }
+
+  tr:nth-of-type(even) .time_table__body {
+    background-color: white;
+  }
+
+  .time_table__body {
+    min-height: 300px;
+    height: calc(100% + 8px);
+
+    .time_table__cell {
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+      background-color: white;
+      padding: 1rem 1rem .25rem 1rem;
+
+      a.time_table__dr_link {
+        color: black;
+        transition: color .15s ease-in-out;
+
+        &:hover {
+          color: $color-secondary;
+          text-decoration: none;
+        }
+      }
+
+      a.time_table__remark_switch {
+        color: $color-warn;
+
+        &--disabled {
+          pointer-events: none;
+          color: #DFDFDF;
+        }
+      }
+    }
+  }
+}

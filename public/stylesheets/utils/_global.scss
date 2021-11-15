@@ -1,0 +1,83 @@
+@import "_colors";
+@import "_texts";
+
+// override default spacings
+p {
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  padding: 2.5rem 0 2.5rem 0;
+}
+
+body {
+  background-color: $color-light;
+}
+
+hr {
+  border: 0;
+  border-top: 0.1rem solid $color-secondary;
+}
+
+.form-control::placeholder {
+	color: #CCCCCC;
+	opacity: 1
+}
+
+.pt-6, .py-6 {
+  padding-top: 4rem !important;
+}
+
+.pb-6, .py-6 {
+  padding-bottom: 4rem !important;
+}
+
+.w-20 {
+  width: 20% !important;
+}
+
+.bg-primary {
+  background: $color-main !important;
+}
+
+.bg-secondary {
+  background: $color-secondary !important;
+}
+
+.bg-outline-secondary {
+  border: 1px solid $color-secondary !important;
+  background-color: transparent !important;
+}
+
+.bg-dark {
+  background: $color-dark !important;
+}
+
+.fg-light {
+  color: $color-white;
+}
+
+.fg-secondary {
+  color: $color-secondary;
+}
+
+.fg-warn {
+  color: $color-warn;
+}
+
+.fg-accept {
+  color: $color-accept;
+}
+
+.fg-light-darken {
+  color: $color-light-darken;
+}
+
+.general__dev_placeholder {
+  text-align: center;
+  border: 1px solid $color-secondary;
+  border-radius: 5px;
+  padding: 1rem 3rem;
+  box-shadow: 0 5px $color-secondary;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+  <title>查詢/取消掛號｜台北市立聯合醫院</title>
+  <%- include('../utils/_head') %>
+  <link rel='stylesheet' href='/stylesheets/query_reg/index.css' />
+  <script src="/javascripts/query_reg/index.js"></script>
+</head>
+<body>
+  <%- include('../components/header') %>
+  <%- include('../components/top-deco') %>
+  <div class="container-fluid my-5">
+    <div class="container">
+      <h2 class="mb-5 text-center text-md-left">查詢/取消掛號</h2>
+      <form novalidate>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-8">
+            <label for="#patient-id">身份格式　<span class="fg-warn">*必填</span></label>
+            <div class="input-group row">
+              <div class="input-group-prepend col-12 col-lg-4">
+                <button class="tpech__btn_basic dropdown-toggle w-100" type="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">身分證號（10碼）</button>
+                <div class="dropdown-menu">
+                  <button class="dropdown-item" type="button">身分證號（10碼）</button>
+                  <button class="dropdown-item" type="button">病歷號（8碼）</button>
+                  <button class="dropdown-item" type="button">護照號碼（9碼）</button>
+                  <button class="dropdown-item" type="button">居留證號（10碼）</button>
+                </div>
+              </div>
+              <div class="col-12 col-lg-8 pl-lg-0 mt-2 mt-lg-0">
+                <input type="text" required pattern="[A-Z][1|2][0-9]{8}" class="form-control tpech__input_basic" id="patient-id"
+                  placeholder="A123456789" aria-label="Text input with dropdown button">
+              </div>
+              <div class="col-12"><div class="invalid-feedback">請輸入正確身份格式</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-8">
+            <label>生日　<span class="fg-warn">*必填</span></label>
+            <div class="input-group row">
+              <div class="input-group-prepend col-12 col-md-4">
+                <button class="tpech__btn_basic dropdown-toggle w-100" type="button" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">民國</button>
+                <div class="dropdown-menu">
+                  <button class="dropdown-item" type="button">民國</button>
+                  <button class="dropdown-item" type="button">西元</button>
+                </div>
+              </div>
+              <div class="col-12 col-md-8 pr-0 row">
+                <div class="col-12 col-md-4 mt-2 mt-md-0 pr-0 pl-md-0 pr-md-1">
+                  <input type="number" required min="1" max="109" class="form-control tpech__input_basic" id="bd-y"
+                    placeholder="年" aria-label="Text input with dropdown button">
+                </div>
+                <div class="col-12 col-md-4 mt-2 mt-md-0 pr-0 px-md-1">
+                  <input type="number" required min="1" max="12" class="form-control tpech__input_basic" id="bd-m"
+                    placeholder="月" aria-label="Text input with dropdown button">
+                </div>
+                <div class="col-12 col-md-4 mt-2 mt-md-0 pr-0 pl-md-1">
+                  <input type="number" required min="1" max="31" class="form-control tpech__input_basic" id="bd-d"
+                    placeholder="日" aria-label="Text input with dropdown button">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="invalid-feedback">請輸入正確日期格式</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-8">
+            <label for="#captcha">驗證碼　<span class="fg-warn">*必填</span></label>
+            <div class="input-group row">
+              <div class="col-12 col-md-4">
+                <img class="mr-2" src="/images/general/default_captcha.svg" alt="captcha" height="38">
+              </div>
+              <div class="col-12 col-md-8 pl-md-0 mt-2 mt-md-0">
+                <input type="text" required pattern="9527" class="form-control tpech__input_basic" id="verify-code"
+                  placeholder="請輸入左方驗證碼" aria-label="Text input with dropdown button">
+              </div>
+              <div class="col-12">
+                <div class="invalid-feedback">請輸入正確驗證碼</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-12 col-md-4 d-flex align-items-end">
+            <button id="query_form__submit" type="submit" class="tpech__btn_popping w-50 mb-1 mx-auto mt-3 mt-md-0">確認送出</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <%- include('../components/bottom-deco') %>
+  <%- include('../components/footer') %>
+  <%- include('../utils/_foot') %>
+</body>
+</html>

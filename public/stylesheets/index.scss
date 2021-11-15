@@ -1,0 +1,263 @@
+@import "./utils/_global";
+@import "./components/_buttons";
+@import "./components/bottom_deco";
+
+#banner, #hospital-area, #dept-area {
+  & p {
+    line-height: 1.8;
+  }
+}
+
+#hospital-area, #dept-area {
+  min-height: 100vh;
+}
+
+#banner {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url(../images/index/bg-banner.jpg);
+  background-position-y: center;
+}
+
+#hospital-area {
+  #hptl__section_title, #hptl__section_subti {
+    transition: opacity .15s ease-in-out;
+  }
+
+  .hptl__steps_wrapper {
+    height: 100%;
+
+    .hptl__step {
+      float: left;
+      min-height: 100%;
+
+      #hptl__select_mode_containter {
+        min-height: calc(100vh - 17rem);
+
+        #hptl__list_select_area {
+          transition: opacity .15s ease-in-out;
+
+          #hptl__branch_tab {
+            overflow: hidden;
+            width: 100%;
+            
+            & > .hptl_branch__img {
+              overflow: hidden;
+              float: left;
+              position: relative;
+              cursor: default;
+              width: 50% !important;
+
+              & img {
+                filter: brightness(35%);
+                transition: filter .5s, transform .5s ease-in-out;
+                transform-origin: center center;
+              }
+
+              &:hover > img {
+                filter: brightness(45%);
+                transform: scale(1.1);
+              }
+
+              &:first-of-type {
+                cursor: pointer;
+
+                & img {
+                  filter: brightness(55%);
+                }
+
+                &:hover > img {
+                  filter: brightness(75%);
+                  transform: scale(1.1);
+                }
+              }
+
+              & .hptl_branch__overlay_text {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100% !important;
+                height: 100% !important;
+                display: inline-block;
+              }
+            }
+          }
+        }
+
+        #hptl__map_select_area {
+          transition: opacity .15s ease-in-out;
+
+          #hptl__map_wrapper {
+            &>svg {
+              & > path {
+                stroke: $color-unaccent;
+                fill: $color-secondary;
+
+                &:not(.disabled) {
+                  cursor: pointer;
+                }
+
+                &.disabled {
+                  stroke: $color-secondary;
+                  fill: $color-unaccent;
+                }
+
+                &.hover:not(.disabled) {
+                  fill: $color-secondary-hover;
+                }
+
+                &.active:not(.disabled) {
+                  stroke: $color-secondary;
+                  fill: $color-bright;
+
+                  &.hover {
+                    fill: $color-bright-hover;
+                  }
+                }
+              }
+
+              & > text {
+                fill: black;
+
+                &:not(.disabled) {
+                  cursor: pointer;
+                }
+
+                &.disabled {
+                  cursor: default;
+                }
+
+                &.hover:not(.disabled) {
+                  fill: white;
+                }
+
+                &.active {
+                  fill: black;
+
+                  &.hover {
+                    fill: black;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#dept-area {
+  .dept__steps_wrapper {
+    height: 100%;
+
+    .dept__step {
+      float: left;
+      min-height: 100%;
+    }
+
+    #dept__step_2 {
+      overflow: hidden;
+      width: 100%;
+
+      .dept_branch__img {
+        overflow: hidden;
+        float: left;
+        position: relative;
+        cursor: default;
+        width: 50% !important;
+
+        & img {
+          filter: brightness(35%);
+          transition: filter .5s, transform .5s ease-in-out;
+          transform-origin: center center;
+        }
+
+        &:hover > img {
+          filter: brightness(45%);
+          transform: scale(1.1);
+        }
+
+        &:first-of-type {
+          cursor: pointer;
+
+          & img {
+            filter: brightness(55%);
+          }
+
+          &:hover > img {
+            filter: brightness(75%);
+            transform: scale(1.1);
+          }
+        }
+
+        & .dept_branch__overlay_text {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100% !important;
+          height: 100% !important;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+#hr-deco {
+  width: 100%;
+  background: url(/images/general/bg-hr.svg);
+  background-size: 70% auto;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  height: 16px;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+a.nav-link {
+  color: $color-secondary;
+
+  &:hover {
+    color: $color-secondary-hover;
+  }
+}
+
+.nav-pills .nav-link.active {
+  background-color: $color-secondary;
+}
+
+/* Rounded tabs */
+
+.rounded-nav {
+  border-radius: 0;
+
+  .nav-link {
+    border-radius: 0;
+  }
+}
+
+@media (min-width: 576px) {
+  .rounded-nav {
+    border-radius: 50rem !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .rounded-nav .nav-link {
+    border-radius: 50rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  #banner {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+
+  #hospital-area .hptl__steps_wrapper .hptl__step #hptl__select_mode_containter #hptl__list_select_area #hptl__branch_tab > .hptl_branch__img,
+  #dept-area .dept__steps_wrapper #dept__step_2 .dept_branch__img {
+    width: 20% !important;
+  }
+}

@@ -1,0 +1,84 @@
+@import "../utils/_global";
+@import "../components/_buttons";
+@import "../components/inputs";
+@import "../components/top_deco";
+@import "../components/bottom_deco";
+
+#clinic-data-area {
+  .clinic_data__title {
+    padding: 1rem 0;
+    background-color: $color-secondary;
+    color: white;
+    text-align: center;
+
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+
+    &--warn {
+      background-color: $color-warn;
+    }
+  }
+
+  .clinic_data__content {
+    padding-left: 0;
+    padding-right: 0;
+
+    div {
+      padding: 1rem 2rem 1rem 2rem;
+      border: 1px solid $color-secondary;
+      border-bottom-left-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
+    }
+
+    &--warn div {
+      border: 1px solid $color-warn;
+    }
+  }
+}
+
+#info-form-area {
+
+  .dropdown-item {
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 768px) {
+  #clinic-data-area {
+  .clinic_data__title {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .clinic_data__content {
+    div {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  #clinic_data__corner--tl {
+    border-top-left-radius: 1.5rem;
+  }
+
+  #clinic_data__corner--tr {
+    border-top-right-radius: 1.5rem;
+  }
+
+  #clinic_data__corner--bl {
+    border-bottom-left-radius: 1.5rem;
+  }
+
+  #clinic_data__corner--br {
+    border-bottom-right-radius: 1.5rem;
+  }
+  }
+
+  #clinic-data-area .clinic_data__content {
+    padding-right: 15px;
+  }
+
+  .invalid-feedback {
+    margin-left: calc(200px + 2rem);
+  }
+}
